@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnitude | Why & How It Works</title>
+  <style>
+    :root {
+      --bg: #f7f4ea;
+      --text: #1f1a15;
+      --muted: #4b443b;
+      --border: #e3dccd;
+      --accent: #c25a1c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 24px;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      font-size: 2.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.75rem 0;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .link-row {
+      display: block;
+      padding: 1.5rem 1.25rem;
+      background: #fffdf7;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .link-row:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+    }
+
+    .link-row h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text);
+    }
+
+    .link-row p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .arrow {
+      font-size: 1.1rem;
+      color: var(--accent);
+      transition: transform 0.15s ease;
+    }
+
+    .link-row:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 32px 18px; }
+      h1 { font-size: 1.85rem; }
+      .link-row { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="image.png" alt="Magnus Consulting" class="logo">
+  </header>
+  <div class="container">
+    <h1>Magnitude</h1>
+    <p class="subtitle">Explore why Magnitude is different and how it works</p>
+
+    <div class="links">
+      <a href="page.html" class="link-row">
+        <h2>Why Magnitude? <span class="arrow">→</span></h2>
+        <p>A guide comparing Magnitude and Microsoft Copilot for content leaders evaluating AI tools.</p>
+      </a>
+
+      <a href="lens.html" class="link-row">
+        <h2>How It Works <span class="arrow">→</span></h2>
+        <p>The 10-lens system that transforms blurry requests into focused, on-brand content.</p>
+      </a>
+    </div>
+  </div>
+  <footer>
+    © Magnus Consulting 2025
+  </footer>
+</body>
+</html>
+

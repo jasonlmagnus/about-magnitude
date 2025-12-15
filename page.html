@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Magnitude Is Different</title>
+  <style>
+    :root {
+      --bg: #f7f4ea;
+      --text: #1f1a15;
+      --muted: #4b443b;
+      --border: #e3dccd;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 48px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 1rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    ul, ol {
+      margin: 1rem 0 1rem 2rem;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      padding-left: 0.5rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 700;
+      padding: 0.75rem 1rem 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.75rem 1rem 0.75rem 0;
+      border-bottom: 1px solid rgba(227, 220, 205, 0.5);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 32px 18px; }
+      table { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="image.png" alt="Magnus Consulting" class="logo">
+  </header>
+  <div class="container">
+    <h1>Why Magnitude Is Different</h1>
+    <h3>A guide for content leaders evaluating AI tools</h3>
+    <hr/>
+    <h2>The Honest Comparison</h2>
+    <p>Microsoft Copilot is a powerful tool. It can access your company documents, apply brand kits for visual consistency, and reference specific files when generating content. That's real value.</p>
+    <p>So why would you consider Magnitude?</p>
+    <p>The difference isn't about access to information. It's about how that information is structured, understood, and applied.</p>
+    <hr/>
+    <h2>What Copilot Does Well</h2>
+    <p>Let's be clear about Copilot's strengths:</p>
+    <ul>
+      <li><strong>Document grounding</strong> — It can search your SharePoint, emails, Teams chats, and calendars to inform responses</li>
+      <li><strong>Brand kits</strong> — You can upload logos, colours, fonts, and tone guidelines for visual consistency</li>
+      <li><strong>File references</strong> — You can point it to specific documents to adopt a style or extract information</li>
+      <li><strong>Meeting intelligence</strong> — It summarises calls and generates action items from transcripts</li>
+    </ul>
+    <p>For general productivity—drafting emails, summarising meetings, creating presentations—Copilot is excellent.</p>
+    <hr/>
+    <h2>Where Magnitude Is Different</h2>
+    <h3>The Difference: Structure vs Access</h3>
+    <p><strong>Copilot accesses your documents.</strong> It can retrieve your brand guidelines PDF, your persona deck, your market report. But it treats them as text to search through.</p>
+    <p><strong>Magnitude understands your marketing intelligence as structured knowledge.</strong> Your personas aren't documents—they're queryable data with specific fields: pains, triggers, motivations, objections, messaging angles. Your market reports aren't PDFs—they're structured intelligence with trends, opportunities, and regional specifics that can be precisely extracted.</p>
+    <p>Think of it this way:</p>
+    <p><strong>Copilot</strong> is like a brilliant assistant who can read any document in your filing cabinet and summarise it for you.</p>
+    <p><strong>Magnitude</strong> is like a colleague who has internalised your entire marketing strategy—not as documents they've read, but as working knowledge they can apply.</p>
+    <hr/>
+    <h2>Three Genuine Differences</h2>
+    <h3>1. Purpose-Built for Marketing Content</h3>
+    <p>Copilot is a general-purpose productivity tool with brand styling added. It works across email, documents, spreadsheets, presentations—anything in Microsoft 365.</p>
+    <p>Magnitude is built specifically for marketing content generation. Its architecture is designed around the knowledge that actually shapes marketing output:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Knowledge Type</th>
+          <th>What Magnitude Structures</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Personas</strong></td>
+          <td>Pains, triggers, objections, motivations, language patterns</td>
+        </tr>
+        <tr>
+          <td><strong>Markets</strong></td>
+          <td>Regional trends, opportunities, challenges, cultural context</td>
+        </tr>
+        <tr>
+          <td><strong>Competitors</strong></td>
+          <td>Positioning, weaknesses, differentiation points</td>
+        </tr>
+        <tr>
+          <td><strong>Products</strong></td>
+          <td>Capabilities, proof points, use cases, messaging hierarchy</td>
+        </tr>
+        <tr>
+          <td><strong>ICPs</strong></td>
+          <td>Firmographics, buying signals, decision criteria</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This isn't about having access to a persona document. It's about having persona intelligence structured so the system knows: "For a LinkedIn post targeting UK CFOs, extract their top three business pains and their preferred communication style."</p>
+    <p>Copilot doesn't have this level of marketing-specific structure. Brand kits handle visual identity and basic tone—they don't encode deep audience understanding.</p>
+    <h3>2. Intelligent Extraction, Not Document Loading</h3>
+    <p>When you ask Copilot to use a document, it retrieves the content and includes it in the prompt. For a detailed persona deck or market report, that's a lot of information—most of which isn't relevant to any single piece of content.</p>
+    <p>Magnitude analyses what your request actually needs and extracts only the relevant pieces.</p>
+    <p><strong>Example:</strong> You want to write about leadership challenges for HR Directors in the UK.</p>
+    <p><em>Copilot approach:</em> Load the HR Director persona document (maybe 15 pages). Load the UK market report. Load brand guidelines. The AI sorts through it all.</p>
+    <p><em>Magnitude approach:</em> From the HR Director persona, extract only: top pains related to leadership, key triggers, preferred tone. From the UK market: extract only the relevant trends. From brand: extract only the voice principles. The AI receives precisely what it needs.</p>
+    <p>The result: faster generation, more focused output, and—importantly—content that doesn't drift into irrelevant tangents because the AI wasn't overwhelmed with unrelated information.</p>
+    <h3>3. Voice Registers, Not Just Tone Guidelines</h3>
+    <p>Copilot's brand kit includes a tone of voice setting. One setting.</p>
+    <p>But your brand doesn't speak the same way everywhere. A white paper sounds different from a LinkedIn post. A thought leadership article sounds different from a sales email. An executive briefing sounds different from a blog.</p>
+    <p>Magnitude builds multiple voice registers into the system:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Register</th>
+          <th>Used For</th>
+          <th>Characteristics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Educator</strong></td>
+          <td>White papers, guides, reports</td>
+          <td>Authoritative, evidence-led, measured</td>
+        </tr>
+        <tr>
+          <td><strong>Peer</strong></td>
+          <td>Thought leadership, articles</td>
+          <td>Conversational expertise, insight-sharing</td>
+        </tr>
+        <tr>
+          <td><strong>Informal</strong></td>
+          <td>Social posts, community content</td>
+          <td>Approachable, direct, human</td>
+        </tr>
+        <tr>
+          <td><strong>Executive</strong></td>
+          <td>Briefings, board content</td>
+          <td>Concise, strategic, outcome-focused</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>These aren't style suggestions—they're built into content templates. When someone generates a white paper, the educator voice is applied automatically. When they create a LinkedIn post, the informal register kicks in. No one has to remember which tone to use.</p>
+    <p>The result: your brand sounds like itself everywhere, but appropriately adapted to context. A single "tone of voice" setting can't achieve this.</p>
+    <h3>4. Quality Gates at the Content Level</h3>
+    <p>Copilot's brand kit ensures visual consistency—right logo, right colours, right fonts. That's valuable for presentations and documents.</p>
+    <p>Magnitude enforces quality at the content level:</p>
+    <ul>
+      <li><strong>Generic phrase detection</strong> — Catches AI-typical language ("in today's fast-paced world...") before it reaches you</li>
+      <li><strong>Brand language enforcement</strong> — Not just tone guidelines, but specific banned phrases and required terminology</li>
+      <li><strong>Audience alignment</strong> — Checks that content actually addresses the concerns of the intended audience</li>
+      <li><strong>Messaging consistency</strong> — Ensures claims align with approved product positioning</li>
+    </ul>
+    <p>This isn't styling. It's substance.</p>
+    <hr/>
+    <h2>When to Use What</h2>
+    <h3>Use Copilot for:</h3>
+    <ul>
+      <li>Email drafting and replies</li>
+      <li>Meeting summaries and action items</li>
+      <li>General document creation</li>
+      <li>Presentation building with brand styling</li>
+      <li>Quick information retrieval from company files</li>
+      <li>Day-to-day productivity tasks</li>
+    </ul>
+    <h3>Use Magnitude for:</h3>
+    <ul>
+      <li>Campaign content at scale</li>
+      <li>Multi-market content programmes</li>
+      <li>Content that requires deep audience understanding</li>
+      <li>Maintaining brand voice across large teams</li>
+      <li>Content where quality and consistency are non-negotiable</li>
+      <li>Anything that represents your organisation externally</li>
+    </ul>
+    <p>They're not competitors—they solve different problems. Copilot makes individuals more productive. Magnitude makes marketing content consistently excellent.</p>
+    <hr/>
+    <h2>The Scaling Question</h2>
+    <p>Here's where the difference matters most:</p>
+    <p>With 200 people using Copilot for marketing content, you have 200 people who can access the same documents but will interpret and apply them differently. The brand kit ensures visual consistency, but the substance of the content varies by individual.</p>
+    <p>With 200 people using Magnitude, you have structured intelligence that every person draws from equally. The persona insights, market context, and competitive positioning aren't interpreted—they're applied consistently.</p>
+    <p>This is the difference between:</p>
+    <ul>
+      <li>"Everyone has access to the brand guidelines"</li>
+      <li>"The brand guidelines are built into how content gets made"</li>
+    </ul>
+    <hr/>
+    <h2>Common Questions</h2>
+    <h3>"Can't we just create better brand kits in Copilot?"</h3>
+    <p>Brand kits in Copilot handle visual identity and a single tone of voice. They're not designed to encode:</p>
+    <ul>
+      <li>Multiple voice registers for different content types</li>
+      <li>Detailed persona psychology (pains, triggers, objections)</li>
+      <li>Market-specific intelligence</li>
+      <li>Competitive positioning</li>
+      <li>Product messaging hierarchies</li>
+      <li>Content-type-specific requirements</li>
+    </ul>
+    <p>These require a different kind of structure—the kind Magnitude is built around.</p>
+    <h3>"Can't we just write different tone guidelines for different content types?"</h3>
+    <p>You could document them. But then you're relying on every user to:</p>
+    <ol>
+      <li>Know which tone applies to which content type</li>
+      <li>Remember to apply it</li>
+      <li>Interpret the guidelines consistently</li>
+    </ol>
+    <p>In Magnitude, voice registers are built into templates. Generate a white paper, get educator voice. Generate a social post, get informal voice. No interpretation required.</p>
+    <h3>"What about pointing Copilot to specific documents?"</h3>
+    <p>You can, and it helps. But you're still relying on individual users to:</p>
+    <ol>
+      <li>Know which documents to reference</li>
+      <li>Remember to reference them</li>
+      <li>Prompt Copilot correctly to extract the right information</li>
+    </ol>
+    <p>Magnitude removes that dependency. The right knowledge is applied automatically based on what the content needs.</p>
+    <h3>"Is this really better than training people on Copilot?"</h3>
+    <p>Training helps people use tools better. It doesn't solve the fundamental issue: Copilot treats your marketing intelligence as documents to search, not as structured knowledge to apply.</p>
+    <p>No amount of training changes that architecture.</p>
+    <hr/>
+    <h2>The Bottom Line</h2>
+    <p>Copilot is a genuine productivity breakthrough. For day-to-day work, it's excellent.</p>
+    <p>But for marketing content that needs to consistently reflect your brand, resonate with specific audiences, and maintain quality at scale—you need more than document access and visual styling.</p>
+    <p>You need structured marketing intelligence, purpose-built for content generation.</p>
+    <p>That's what Magnitude provides.</p>
+    <hr/>
+    <p><em>For a demonstration of how Magnitude works alongside your existing Microsoft 365 environment, contact your Magnus Consulting team.</em></p>
+  </div>
+  <footer>
+    © Magnus Consulting 2025
+  </footer>
+</body>
+</html>

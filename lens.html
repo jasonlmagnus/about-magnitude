@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magnitude Lens System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #1a1a1a;
+            --border: #2a2a2a;
+            --text: #fafafa;
+            --text-dim: #888;
+            --accent: #ff4d00;
+            --teal: #2a9d8f;
+            --gold: #d4a03c;
+            --blue: #4a7c94;
+            --red: #ef4444;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Syne', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 2.5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 em, h3 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            text-align: center;
+            padding-top: 3rem;
+            padding-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 0;
+        }
+
+        .hero-tagline em {
+            color: var(--accent);
+        }
+
+        /* ==================== LENS SYSTEM ==================== */
+        .lens-stage {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 2rem 1rem 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: 100px 1fr 100px;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 800px) {
+            .flow {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .io {
+            text-align: center;
+        }
+
+        .io-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .io.input .io-icon {
+            background: var(--bg);
+            border: 2px dashed var(--border);
+            color: var(--text-dim);
+        }
+
+        .io.output .io-icon {
+            background: rgba(255, 77, 0, 0.15);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .io-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-dim);
+        }
+
+        .optical-bench {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rail {
+            background: linear-gradient(to bottom, 
+                var(--bg) 0%, 
+                #1a1a1a 40%, 
+                #282828 50%, 
+                #1a1a1a 60%, 
+                var(--bg) 100%);
+            border-radius: 6px;
+            padding: 1.5rem 0;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .beam {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                rgba(255, 77, 0, 0.3) 15%,
+                rgba(255, 77, 0, 0.5) 50%,
+                rgba(255, 77, 0, 0.3) 85%,
+                transparent 100%);
+            transform: translateY(-50%);
+        }
+
+        .lens-groups {
+            display: grid;
+            grid-template-columns: 3fr 3fr 2fr 2fr;
+            gap: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .group-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .group-col:last-child {
+            border-right: none;
+        }
+
+        .lenses-row {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            padding: 0.5rem 0;
+        }
+
+        .lens {
+            width: 16px;
+            height: 90px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(-60px);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .lens:hover {
+            z-index: 10;
+        }
+
+        .lens::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 3px;
+            right: 3px;
+            height: 20%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .lens.world { 
+            background: linear-gradient(180deg, #3dbaa8 0%, var(--teal) 40%, #1a5a52 100%); 
+            box-shadow: 0 0 15px rgba(42, 157, 143, 0.4);
+        }
+        .lens.world:hover {
+            box-shadow: 0 0 40px rgba(42, 157, 143, 1), 0 10px 30px rgba(42, 157, 143, 0.6);
+        }
+        .lens.market { 
+            background: linear-gradient(180deg, #e8bc5a 0%, var(--gold) 40%, #8a6520 100%); 
+            box-shadow: 0 0 15px rgba(212, 160, 60, 0.4);
+        }
+        .lens.market:hover {
+            box-shadow: 0 0 40px rgba(212, 160, 60, 1), 0 10px 30px rgba(212, 160, 60, 0.6);
+        }
+        .lens.customer { 
+            background: linear-gradient(180deg, #6a9cb4 0%, var(--blue) 40%, #2a4a5a 100%); 
+            box-shadow: 0 0 15px rgba(74, 124, 148, 0.4);
+        }
+        .lens.customer:hover {
+            box-shadow: 0 0 40px rgba(74, 124, 148, 1), 0 10px 30px rgba(74, 124, 148, 0.6);
+        }
+        .lens.strategy { 
+            background: linear-gradient(180deg, #ff7040 0%, var(--accent) 40%, #992e00 100%); 
+            box-shadow: 0 0 15px rgba(255, 77, 0, 0.4);
+        }
+        .lens.strategy:hover {
+            box-shadow: 0 0 40px rgba(255, 77, 0, 1), 0 10px 30px rgba(255, 77, 0, 0.6);
+        }
+
+        /* Animation classes */
+        .lens.animated {
+            animation: dropIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .lens.visible {
+            animation: dropIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .lens.landed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lens.landed:hover {
+            transform: translateY(0) scaleY(1.25);
+        }
+
+        /* Labels */
+        .group-label {
+            text-align: center;
+            padding: 0 0.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .group-label.animated {
+            animation: fadeUp 0.5s ease forwards;
+        }
+        
+        .group-label.visible {
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes dropIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lens::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            white-space: nowrap;
+            background: var(--bg);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .lens:hover::after {
+            opacity: 1;
+        }
+
+        /* Rich tooltip */
+        .lens-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 100;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .lens:hover .lens-tooltip {
+            opacity: 1;
+        }
+
+        .lens:hover::after {
+            opacity: 0;
+        }
+
+        .lens-tooltip-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .lens.world .lens-tooltip-title { color: var(--teal); }
+        .lens.market .lens-tooltip-title { color: var(--gold); }
+        .lens.customer .lens-tooltip-title { color: var(--blue); }
+        .lens.strategy .lens-tooltip-title { color: var(--accent); }
+
+        .lens-tooltip-desc {
+            font-size: 0.7rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .lens-tooltip-includes {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .lens-tooltip-includes strong {
+            color: var(--text-dim);
+        }
+
+        .labels-row {
+            display: grid;
+            grid-template-columns: 3fr 3fr 2fr 2fr;
+            gap: 0;
+            margin-top: 1rem;
+        }
+
+        .group-label .title {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.2rem;
+        }
+
+        .group-label[data-group="world"] .title { color: var(--teal); }
+        .group-label[data-group="market"] .title { color: var(--gold); }
+        .group-label[data-group="customer"] .title { color: var(--blue); }
+        .group-label[data-group="strategy"] .title { color: var(--accent); }
+
+        .group-label .list {
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background: #e64500;
+        }
+
+        .hover-hint {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        .hover-hint span {
+            color: var(--accent);
+        }
+
+        .scroll-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            color: var(--text-dim);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-arrow {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ==================== RECIPES ==================== */
+        .recipes-section {
+            border-top: 1px solid var(--border);
+        }
+
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 800px) {
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .recipe-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .recipe-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .recipe-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 77, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .recipe-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .recipe-stack {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .mini-lens {
+            width: 8px;
+            height: 40px;
+            border-radius: 4px;
+        }
+
+        .mini-lens.world { background: var(--teal); }
+        .mini-lens.market { background: var(--gold); }
+        .mini-lens.customer { background: var(--blue); }
+        .mini-lens.strategy { background: var(--accent); }
+
+        .recipe-lenses {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-lens-tag {
+            font-size: 0.6rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .recipe-lens-tag.world { background: rgba(42, 157, 143, 0.2); color: var(--teal); }
+        .recipe-lens-tag.market { background: rgba(212, 160, 60, 0.2); color: var(--gold); }
+        .recipe-lens-tag.customer { background: rgba(74, 124, 148, 0.2); color: var(--blue); }
+        .recipe-lens-tag.strategy { background: rgba(255, 77, 0, 0.2); color: var(--accent); }
+
+        .recipe-output {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .recipe-output strong {
+            color: var(--text);
+        }
+
+        /* ==================== FAILURE MODES ==================== */
+        .failures-section {
+            border-top: 1px solid var(--border);
+        }
+
+        .failures-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .failures-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .failure-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .failure-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin: 0 auto 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .failure-icon .mini-lens {
+            width: 10px;
+            height: 28px;
+            opacity: 0.4;
+        }
+
+        .failure-icon::after {
+            content: '✕';
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: var(--red);
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .failure-missing {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--red);
+            margin-bottom: 0.4rem;
+        }
+
+        .failure-result {
+            font-family: var(--serif);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-dim);
+        }
+
+        /* ==================== FOOTER MESSAGE ==================== */
+        .footer-message {
+            text-align: center;
+            padding: 2rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-message p {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-message em {
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="section hero">
+        <div class="label">Magnitude Platform</div>
+        <h2>Ten lenses. Four categories. <em>One focused output.</em></h2>
+        <p class="subtitle">Select the right lenses → turn a vague request into focused content.</p>
+    </section>
+
+    <!-- Lens System -->
+    <section class="section">
+        <div class="lens-stage">
+            <div class="flow">
+                <!-- Input -->
+                <div class="io input">
+                    <div class="io-icon">?</div>
+                    <p class="io-label">Blurry Request</p>
+                </div>
+
+                <!-- Optical Bench -->
+                <div class="optical-bench">
+                    <div class="rail">
+                        <div class="beam"></div>
+                        <div class="lens-groups">
+                            <div class="group-col" data-group="world">
+                                <div class="lenses-row">
+                                    <div class="lens world" data-name="Brand" style="animation-delay: 0.3s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Brand</div>
+                                            <div class="lens-tooltip-desc">Your identity, voice, and market position. How you show up in the world.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Value, tone, positioning, personality</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens world" data-name="Product" style="animation-delay: 0.5s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Product</div>
+                                            <div class="lens-tooltip-desc">What you sell and how it works. The tangible thing behind the promise.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Capabilities, constraints, proof points</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens world" data-name="Value Prop" style="animation-delay: 0.7s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Value Proposition</div>
+                                            <div class="lens-tooltip-desc">Your primary claim and the evidence that supports it.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Core claim, reasons to believe, proof</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col" data-group="market">
+                                <div class="lenses-row">
+                                    <div class="lens market" data-name="Competitor" style="animation-delay: 1.3s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Competitor</div>
+                                            <div class="lens-tooltip-desc">Who you're up against and how you're different.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Differentiation, contrast, white space</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens market" data-name="Market" style="animation-delay: 1.5s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Market</div>
+                                            <div class="lens-tooltip-desc">The forces shaping your category right now.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Trends, timing, narrative shifts</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens market" data-name="Sector" style="animation-delay: 1.7s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Sector</div>
+                                            <div class="lens-tooltip-desc">Industry-specific context, constraints, and language.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Regulations, norms, terminology</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col" data-group="customer">
+                                <div class="lenses-row">
+                                    <div class="lens customer" data-name="ICP" style="animation-delay: 2.3s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">ICP</div>
+                                            <div class="lens-tooltip-desc">Ideal Customer Profile. The organisations most likely to buy.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Firmographics, buying context, fit criteria</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens customer" data-name="Persona" style="animation-delay: 2.5s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Persona</div>
+                                            <div class="lens-tooltip-desc">The human you're talking to. What they care about.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Jobs, pains, objections, KPIs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-col" data-group="strategy">
+                                <div class="lenses-row">
+                                    <div class="lens strategy" data-name="Triggers" style="animation-delay: 3.1s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">Business Triggers</div>
+                                            <div class="lens-tooltip-desc">The events that create urgency to act now.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Why now? What changed? Pain catalysts</div>
+                                        </div>
+                                    </div>
+                                    <div class="lens strategy" data-name="GTM" style="animation-delay: 3.3s">
+                                        <div class="lens-tooltip">
+                                            <div class="lens-tooltip-title">GTM Strategy</div>
+                                            <div class="lens-tooltip-desc">How this content fits your go-to-market motion.</div>
+                                            <div class="lens-tooltip-includes"><strong>Includes:</strong> Channel, CTA, sequencing, intent</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="labels-row">
+                        <div class="group-label" data-group="world" id="label-world" style="animation-delay: 1s">
+                            <span class="title">Your World</span>
+                            <span class="list">Brand · Product · Value Prop</span>
+                        </div>
+                        <div class="group-label" data-group="market" id="label-market" style="animation-delay: 2s">
+                            <span class="title">Your Market</span>
+                            <span class="list">Competitor · Market · Sector</span>
+                        </div>
+                        <div class="group-label" data-group="customer" id="label-customer" style="animation-delay: 2.8s">
+                            <span class="title">Your Customer</span>
+                            <span class="list">ICP · Persona</span>
+                        </div>
+                        <div class="group-label" data-group="strategy" id="label-strategy" style="animation-delay: 3.6s">
+                            <span class="title">Your Strategy</span>
+                            <span class="list">Triggers · GTM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output -->
+                <div class="io output">
+                    <div class="io-icon">✓</div>
+                    <p class="io-label">Focused Output</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <p class="hover-hint"><span>↑</span> Hover over any lens to learn more</p>
+                <button class="btn primary" id="playBtn">Build Stack</button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Example Recipes -->
+    <section class="section recipes-section">
+        <div class="label">The Power of Combination</div>
+        <h3>Example <em>recipes</em></h3>
+        <p class="subtitle">Different outputs need different lens combinations.</p>
+
+        <div class="recipes-grid">
+            <div class="recipe-card">
+                <div class="recipe-header">
+                    <div class="recipe-icon">📄</div>
+                    <span class="recipe-title">Thought Leadership POV</span>
+                </div>
+                <div class="recipe-stack">
+                    <div class="mini-lens world"></div>
+                    <div class="mini-lens world"></div>
+                    <div class="mini-lens market"></div>
+                    <div class="mini-lens market"></div>
+                    <div class="mini-lens customer"></div>
+                    <div class="mini-lens strategy"></div>
+                </div>
+                <div class="recipe-lenses">
+                    <span class="recipe-lens-tag world">Brand</span>
+                    <span class="recipe-lens-tag world">Value Prop</span>
+                    <span class="recipe-lens-tag market">Market</span>
+                    <span class="recipe-lens-tag market">Sector</span>
+                    <span class="recipe-lens-tag customer">Persona</span>
+                    <span class="recipe-lens-tag strategy">Triggers</span>
+                </div>
+                <p class="recipe-output"><strong>Output:</strong> A compelling point of view grounded in brand authority and market context.</p>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-header">
+                    <div class="recipe-icon">⚔️</div>
+                    <span class="recipe-title">Competitive Teardown</span>
+                </div>
+                <div class="recipe-stack">
+                    <div class="mini-lens market"></div>
+                    <div class="mini-lens market"></div>
+                    <div class="mini-lens customer"></div>
+                    <div class="mini-lens world"></div>
+                </div>
+                <div class="recipe-lenses">
+                    <span class="recipe-lens-tag market">Competitor</span>
+                    <span class="recipe-lens-tag market">Sector</span>
+                    <span class="recipe-lens-tag customer">ICP</span>
+                    <span class="recipe-lens-tag world">Value Prop</span>
+                </div>
+                <p class="recipe-output"><strong>Output:</strong> Sharp differentiation that lands with your target buyers.</p>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-header">
+                    <div class="recipe-icon">🎯</div>
+                    <span class="recipe-title">Campaign CTA</span>
+                </div>
+                <div class="recipe-stack">
+                    <div class="mini-lens customer"></div>
+                    <div class="mini-lens strategy"></div>
+                    <div class="mini-lens strategy"></div>
+                    <div class="mini-lens world"></div>
+                </div>
+                <div class="recipe-lenses">
+                    <span class="recipe-lens-tag customer">Persona</span>
+                    <span class="recipe-lens-tag strategy">Triggers</span>
+                    <span class="recipe-lens-tag strategy">GTM</span>
+                    <span class="recipe-lens-tag world">Value Prop</span>
+                </div>
+                <p class="recipe-output"><strong>Output:</strong> A call-to-action that resonates with urgency and relevance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Failure Modes -->
+    <section class="section failures-section">
+        <div class="label">The Importance of Discipline</div>
+        <h3>Missing a lens = <em>predictable failure</em></h3>
+        <p class="subtitle">Every lens gap creates a specific weakness in your output.</p>
+
+        <div class="failures-grid">
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <div class="mini-lens world"></div>
+                </div>
+                <p class="failure-missing">No Value Prop</p>
+                <p class="failure-result">"No clear claim."</p>
+            </div>
+
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <div class="mini-lens market"></div>
+                </div>
+                <p class="failure-missing">No Competitor</p>
+                <p class="failure-result">"No differentiation."</p>
+            </div>
+
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <div class="mini-lens customer"></div>
+                </div>
+                <p class="failure-missing">No Persona</p>
+                <p class="failure-result">"No resonance."</p>
+            </div>
+
+            <div class="failure-card">
+                <div class="failure-icon">
+                    <div class="mini-lens strategy"></div>
+                </div>
+                <p class="failure-missing">No GTM</p>
+                <p class="failure-result">"No action."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Message -->
+    <div class="footer-message">
+        <p>The right combination of lenses → <em>consistent, on-brand content at scale.</em></p>
+    </div>
+
+    <footer>
+        <p>Magnus Consulting × Magnitude Platform</p>
+    </footer>
+
+    <script>
+        function startAnimation() {
+            // Add animated class to all lenses and labels
+            document.querySelectorAll('.lens').forEach(lens => {
+                lens.classList.add('animated');
+            });
+            document.querySelectorAll('.group-label').forEach(label => {
+                label.classList.add('animated');
+            });
+
+            // After animations complete, switch to landed class so hover works
+            setTimeout(() => {
+                document.querySelectorAll('.lens.animated').forEach(lens => {
+                    lens.classList.remove('animated');
+                    lens.classList.add('landed');
+                });
+            }, 4500);
+        }
+
+        // Multiple triggers to ensure animation starts
+        let animationStarted = false;
+        function triggerOnce() {
+            if (!animationStarted) {
+                animationStarted = true;
+                startAnimation();
+            }
+        }
+
+        // Immediate attempt
+        setTimeout(triggerOnce, 100);
+        
+        // On load
+        window.addEventListener('load', function() {
+            setTimeout(triggerOnce, 100);
+        });
+
+        // Fallback
+        setTimeout(triggerOnce, 500);
+
+        // Build Stack button - replay animation
+        document.getElementById('playBtn').addEventListener('click', function() {
+            // Reset
+            document.querySelectorAll('.lens').forEach(lens => {
+                lens.classList.remove('landed', 'animated');
+            });
+            document.querySelectorAll('.group-label').forEach(label => {
+                label.classList.remove('animated');
+            });
+
+            // Trigger reflow
+            void document.body.offsetWidth;
+
+            // Start animation (bypass the flag)
+            setTimeout(startAnimation, 50);
+        });
+    </script>
+</body>
+</html>
