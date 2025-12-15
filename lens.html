@@ -708,6 +708,9 @@
             padding: 2rem 2rem 1rem;
             max-width: 1000px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
@@ -715,11 +718,32 @@
             width: auto;
             display: block;
         }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--sans);
+        }
+
+        .back-button:hover {
+            border-color: var(--accent);
+            background: rgba(255, 77, 0, 0.1);
+        }
     </style>
 </head>
 <body>
     <header>
         <img src="Magnitude Logo HORIZONTAL NEG.png" alt="Magnitude" class="logo">
+        <a href="index.html" class="back-button">← Back to Home</a>
     </header>
 
     <!-- Hero -->

@@ -31,12 +31,34 @@
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .logo {
       height: 120px;
       width: auto;
       display: block;
+    }
+
+    .back-button {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-button:hover {
+      border-color: var(--muted);
+      background: rgba(0, 0, 0, 0.02);
     }
 
     .container {
@@ -137,6 +159,7 @@
 <body>
   <header>
     <img src="Magnitude Logo HORIZONTAL POS.png" alt="Magnitude" class="logo">
+    <a href="index.html" class="back-button">← Back to Home</a>
   </header>
   <div class="container">
     <h1>Why Magnitude Is Different</h1>
